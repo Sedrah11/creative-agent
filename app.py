@@ -98,6 +98,14 @@ if st.button("✨ Generate Ideas"):
                 st.markdown("### ✍️ Generated Ideas")
                 for i, out in enumerate(outputs):
                     st.markdown(
-                        f"""
+                        """
                         <div style="background-color:#F1F1F1; padding:10px; border-radius:8px; margin-bottom:10px">
-                        <b>Idea {i+1}:</b> {out['generated_text'].strip()}
+                        <b>Idea {idx}:</b> {text}
+                        </div>
+                        """.format(idx=i+1, text=out['generated_text'].strip()),
+                        unsafe_allow_html=True
+                    )
+            except Exception as e:
+                st.error(f"⚠️ Error: {e}")
+    else:
+        st.warning("Please enter campaign details before generating.")
