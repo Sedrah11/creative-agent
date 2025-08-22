@@ -101,11 +101,3 @@ if st.button("✨ Generate Ideas"):
                         f"""
                         <div style="background-color:#F1F1F1; padding:10px; border-radius:8px; margin-bottom:10px">
                         <b>Idea {i+1}:</b> {out['generated_text'].strip()}
-                        </div>
-                        """,
-                        unsafe_allow_html=True
-                    )
-            except Exception as e:
-                st.error(f"⚠️ Error: {e}")
-    else:
-        st.warning("Please enter campaign details before generating.")
