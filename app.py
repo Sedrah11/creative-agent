@@ -1,5 +1,9 @@
+import os
 import streamlit as st
 from transformers import pipeline
+
+# Set Hugging Face cache directory
+os.environ["TRANSFORMERS_CACHE"] = "./models"
 
 # Page configuration
 st.set_page_config(
@@ -8,10 +12,10 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Cache Hugging Face model so it loads only once
+# Cache the model so it only loads once
 @st.cache_resource
 def load_model():
-    return pipeline("text-generation", model="distilgpt2", cache_dir="./models")
+    return pipeline("text-generation", model="distilgpt2")
 
 generator = load_model()
 
