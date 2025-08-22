@@ -1,15 +1,19 @@
 import streamlit as st
 from transformers import pipeline
 
-# Initialize text generation model
-generator = pipeline("text-generation", model="distilgpt2")
-
 # Page configuration
 st.set_page_config(
     page_title="Creative Agent",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Cache Hugging Face model so it loads only once
+@st.cache_resource
+def load_model():
+    return pipeline("text-generation", model="distilgpt2", cache_dir="./models")
+
+generator = load_model()
 
 # Sidebar for instructions / info
 with st.sidebar:
